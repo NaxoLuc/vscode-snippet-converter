@@ -1,25 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { ThemeProvider, createTheme  } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Layout } from './component/layout/layout';
+import { Content } from './component/content/content';
+import { SnippetConverter } from './component/snippet-converter/snippet-converter';
 function App() {
+    const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+        },
+      });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Layout child={<Content child={<SnippetConverter/>}/>} />
+    </ThemeProvider>
+    );
 }
 
 export default App;
